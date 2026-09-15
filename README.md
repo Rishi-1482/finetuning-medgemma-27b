@@ -1,8 +1,16 @@
 # MedGemma Fine-tuning for Medical Chatbot
 
+## About
+
+This repository demonstrates a complete practical guide to fine-tuning Google's **MedGemma 27B** language model for building an empathetic medical assistant. The project uses **QLoRA** (4-bit quantization + Low-Rank Adaptation) to efficiently train a 27-billion-parameter model on consumer-grade GPUs.
+
+This is ideal for researchers, ML engineers, and healthcare professionals exploring practical LLM fine-tuning with limited computational resources.
+
+---
+
 ## Overview
 
-This repository/notebook demonstrates the complete end-to-end process of fine-tuning the **`google/medgemma-27b-text-it`** Large Language Model to function as a warm, empathetic medical assistant (General Practitioner).
+This repository/notebook demonstrates the complete end-to-end process of fine-tuning the **google/medgemma-27b-text-it** Large Language Model to function as a warm, empathetic medical assistant.
 
 ## Key Features & Techniques
 
@@ -42,26 +50,95 @@ The project covers the complete fine-tuning workflow:
 
 ## Workflow
 
-```text
+```
 Medical Conversation Dataset
-            │
-            ▼
+             |
+             v
   Data Loading & Formatting
-            │
-            ▼
-    4-bit Model Quantization
-            │
-            ▼
-       LoRA Adapters
-            │
-            ▼
-   Supervised Fine-Tuning
-            │
-            ▼
-     Trained LoRA Adapter
-            │
-            ▼
-         Inference
-            │
-            ▼
- Empathetic Medical Assistant
+             |
+             v
+   4-bit Model Quantization
+             |
+             v
+      LoRA Adapters
+             |
+             v
+  Supervised Fine-Tuning
+             |
+             v
+   Trained LoRA Adapter
+             |
+             v
+       Inference
+             |
+             v
+Empathetic Medical Assistant
+```
+
+## Repository Structure
+
+```
+finetuning-medgemma-27b/
+├── README.md                     # This file
+├── finetuning_LoRA.ipynb         # Main fine-tuning notebook
+└── finetuning_LoRA-2.ipynb       # Alternative version (same content)
+```
+
+## Getting Started
+
+### Requirements
+
+- GPU with sufficient VRAM (24GB+ recommended)
+- Python 3.8+
+- Hugging Face account (for model access)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Rishi-1482/finetuning-medgemma-27b.git
+cd finetuning-medgemma-27b
+
+# Install dependencies
+pip install torch transformers peft trl datasets accelerate bitsandbytes
+```
+
+### Usage
+
+1. Open `finetuning_LoRA.ipynb` in Jupyter Notebook or Google Colab
+2. Follow the cells sequentially to:
+   - Load the MedGemma model
+   - Prepare your medical conversation dataset
+   - Fine-tune with LoRA adapters
+   - Run inference with your trained model
+
+## Why This Approach?
+
+- **Large Model (27B parameters)**: QLoRA 4-bit quantization reduces memory requirements
+- **Limited GPU Memory**: Low-Rank Adapters (LoRA) make training feasible on consumer GPUs
+- **Long Training Times**: Paged optimizer and gradient checkpointing accelerate training
+- **Complex Setup**: Hugging Face TRL trainer provides production-ready implementation
+
+## Model Information
+
+- **Base Model**: google/medgemma-27b-text-it
+- **Parameters**: 27 Billion
+- **Type**: Instruction-tuned medical language model
+- **Training Method**: Supervised Fine-Tuning (SFT) with LoRA
+
+## Learning Resources
+
+- [Hugging Face PEFT Documentation](https://huggingface.co/docs/peft/)
+- [QLoRA Paper](https://arxiv.org/abs/2305.14314)
+- [Hugging Face TRL](https://huggingface.co/docs/trl/)
+- [MedGemma Model Card](https://huggingface.co/google/medgemma-27b-text-it)
+
+## Notes
+
+- Both notebook files contain the same code and are provided as alternatives
+- Adjust hyperparameters and batch sizes based on your available GPU memory
+- Fine-tuning duration depends on dataset size and available computational resources
+
+## License
+
+This project is open source. Feel free to use and modify for your research and projects.
