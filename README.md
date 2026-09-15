@@ -138,7 +138,3 @@ pip install torch transformers peft trl datasets accelerate bitsandbytes
 - Both notebook files contain the same code and are provided as alternatives
 - Adjust hyperparameters and batch sizes based on your available GPU memory
 - Fine-tuning duration depends on dataset size and available computational resources
-
-## License
-
-This project is open source. Feel free to use and modify for your research and projects.
