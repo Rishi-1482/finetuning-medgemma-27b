@@ -80,8 +80,7 @@ Empathetic Medical Assistant
 ```
 finetuning-medgemma-27b/
 ├── README.md                     # This file
-├── finetuning_LoRA.ipynb         # Main fine-tuning notebook
-└── finetuning_LoRA-2.ipynb       # Alternative version (same content)
+└── finetuning_LoRA-2.ipynb       # notebook finetuning
 ```
 
 ## Getting Started
